@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+
+body {
+  font-family: 'Inter', sans-serif;
+}
 
 :root {
   --background: #ffffff;
@@ -22,5 +28,51 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
+}
+@keyframes borderAnimation {
+  0% {
+    border-image: linear-gradient(90deg, #00a6ff, #00ff77, #00a6ff) 1;
+    border-image-slice: 1;
+  }
+  100% {
+    border-image: linear-gradient(270deg, #00a6ff, #00ff77, #00a6ff) 1;
+    border-image-slice: 1;
+  }
+}
+.hover\:text-shadow:hover {
+  text-shadow: 0 5px 15px #58adfdd6, 0 1px 1px rgba(122, 205, 241, 0.884);
+}
+
+/* Hide scrollbar track background and style thumb for all textarea elements */
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #374151; /* dark thumb */
+  border-radius: 6px;
+}
+textarea::-webkit-scrollbar-track {
+  background: transparent; /* transparent track */
+}
+
+/* For Firefox */
+textarea {
+  scrollbar-color: #374151 transparent;
+  scrollbar-width: thin;
+}
+
+.chart-scroll::-webkit-scrollbar {
+  height: 8px;
+  background: #181c2a;
+}
+.chart-scroll::-webkit-scrollbar-thumb {
+  background: #232946;
+  border-radius: 8px;
+}
+.chart-scroll::-webkit-scrollbar-thumb:hover {
+  background: #bbbfbd;
+}
+.recharts-wrapper *:focus {
+  outline: none;
 }

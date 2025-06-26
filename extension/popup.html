@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LinkedIn Sync</title>
+    <style>
+      body, #root {
+        min-width: 260px;
+        min-height: 320px;
+        width: 260px;
+        height: 320px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        background: linear-gradient(135deg, #232946 0%, #1a1a2e 100%);
+        color: #fff;
+      }
+      #root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 18px 10px;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px 0 #0003;
+        background: rgba(30, 41, 59, 0.85);
+        margin: 12px auto;
+        max-width: 280px;
+      }
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: 0.02em;
+        color: #00d4ff;
+        text-shadow: 0 2px 8px #00d4ff33;
+      }
+      button, .modern-btn {
+        background: linear-gradient(90deg, #00d4ff 0%, #3a86ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 22px;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 12px 0;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #00d4ff33;
+        transition: background 0.2s, box-shadow 0.2s;
+      }
+      button:hover, .modern-btn:hover {
+        background: linear-gradient(90deg, #3a86ff 0%, #00d4ff 100%);
+        box-shadow: 0 4px 16px #00d4ff55;
+      }
+      .info-card {
+        background: rgba(255,255,255,0.06);
+        border-radius: 10px;
+        padding: 16px;
+        margin: 16px 0;
+        width: 100%;
+        box-shadow: 0 2px 8px #0002;
+        color: #e0e6ed;
+        font-size: 1rem;
+      }
+      .divider {
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(90deg, #00d4ff 0%, #3a86ff 100%);
+        margin: 24px 0;
+        border: none;
+        opacity: 0.3;
+      }
+      button, .modern-btn, input[type="text"], input[type="email"], input[type="password"] {
+        width: auto;
+        min-width: 80px;
+        max-width: 180px;
+        align-self: center;
+        box-sizing: border-box;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      input[type="text"], input[type="email"], input[type="password"] {
+        width: 90%;
+        min-width: 120px;
+        max-width: 220px;
+        border-radius: 8px;
+        padding: 10px 12px;
+        border: 1.5px solid #00d4ff;
+        margin: 14px auto 10px auto;
+        font-size: 1rem;
+        background: #181c2f;
+        color: #fff;
+        box-shadow: 0 1px 6px #00d4ff22;
+        outline: none;
+        display: block;
+        transition: box-shadow 0.2s, border-color 0.2s;
+      }
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus {
+        box-shadow: 0 2px 12px #00d4ff55;
+        border-color: #3a86ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Logo at the top -->
+      <img src="pulse logo.png" alt="Logo" style="width:56px;height:56px;object-fit:contain;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;" />
+      <h1>LinkedIn Sync</h1>
+      <button>Test Button</button>
+      <!-- Add your popup content here -->
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

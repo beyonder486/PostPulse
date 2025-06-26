@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { DeepSeek } from '@/lib/hfClient';
 import AnalysisChart from '@/components/AnalysisChart';
 import AnalysisMetrics from '@/components/AnalysisMetrics';
+import type { User } from '@supabase/supabase-js';
 
 type Post = {
   id: string;
@@ -81,7 +82,15 @@ const personaOptions = [
   },
 ];
 
-function PersonaDropdown({ persona, setPersona, disabled }: { persona: string, setPersona: (v: any) => void, disabled: boolean }) {
+function PersonaDropdown({
+  persona,
+  setPersona,
+  disabled,
+}: {
+  persona: string;
+  setPersona: (v: 'product promoter' | 'enthusiast') => void;
+  disabled: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -117,7 +126,7 @@ function PersonaDropdown({ persona, setPersona, disabled }: { persona: string, s
               type="button"
               className={`flex w-full items-center gap-2 px-4 py-2 text-left text-white hover:bg-blue-900/30 transition ${persona === opt.value ? "bg-blue-900/20" : ""}`}
               onClick={() => {
-                setPersona(opt.value);
+                setPersona(opt.value as 'product promoter' | 'enthusiast');
                 setOpen(false);
               }}
               disabled={disabled}
@@ -132,7 +141,7 @@ function PersonaDropdown({ persona, setPersona, disabled }: { persona: string, s
 }
 
 export default function DashboardPage() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [genLoading, setGenLoading] = useState(false);
@@ -220,8 +229,12 @@ export default function DashboardPage() {
       const content = await DeepSeek.generate(prompt, persona);
       setGenerated(content);
       setShowGeneratedModal(true); // Show the modal
-    } catch (err: any) {
-      setError(err.message || 'Error generating post');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message || 'Error generating post');
+      } else {
+        setError('Error generating post');
+      }
     }
     setGenLoading(false);
   };
@@ -537,22 +550,26 @@ export default function DashboardPage() {
                   setError('');
                   try {
                     const { error } = await supabase.from('posts').insert([
-                      { user_id: user.id, content: generated, created_at: new Date().toISOString() }
+                      { user_id: user!.id, content: generated, created_at: new Date().toISOString() }
                     ]);
                     if (error) throw error;
                     // Refresh posts
                     const { data: newPosts } = await supabase
                       .from('posts')
                       .select('*')
-                      .eq('user_id', user.id)
+                      .eq('user_id', user!.id)
                       .order('created_at', { ascending: false });
                     setPosts(newPosts || []);
                     setGenerated('');
                     setPrompt('');
                     setShowPrompt(false);
                     setShowGeneratedModal(false);
-                  } catch (err: any) {
-                    setError(err.message || 'Error saving post');
+                  } catch (err) {
+                    if (err instanceof Error) {
+                      setError(err.message || 'Error saving post');
+                    } else {
+                      setError('Error saving post');
+                    }
                   }
                   setGenLoading(false);
                 }}

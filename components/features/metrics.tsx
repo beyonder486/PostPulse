@@ -4,12 +4,12 @@ export default function FeatureMetrics() {
       <h2 className="text-xl font-bold text-white mb-2">📊 Post Metrics</h2>
       <p className="text-gray-300 mb-4">
         Instantly see which of your LinkedIn posts generate the most responses — from likes and comments to shares and saves.
-
-PostPulse breaks down your post performance with clean, visual analytics that help you spot what's working and what’s not.
-
-Track engagement trends over time, compare results across different content types, and uncover exactly what resonates with your audience.
-
-Use these insights to fine-tune your content strategy, double down on what works, and grow with confidence — one post at a time.
+        <br /><br />
+        PostPulse breaks down your post performance with clean, visual analytics that help you spot what&apos;s working and what&rsquo;s not.
+        <br /><br />
+        Track engagement trends over time, compare results across different content types, and uncover exactly what resonates with your audience.
+        <br /><br />
+        Use these insights to fine-tune your content strategy, double down on what works, and grow with confidence — one post at a time.
       </p>
       <div className="w-full flex justify-center">
         {/* Example bar chart visualization */}

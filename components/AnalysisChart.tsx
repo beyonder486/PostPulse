@@ -4,7 +4,24 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, LineChart, Line, Area
 } from 'recharts';
 
-const CustomLineTooltip = ({ active, payload, label }: any) => {
+// Fix type errors by specifying proper types
+
+// 1. Define a type for metrics
+type Metric = {
+  likes: number;
+  comments: number;
+  posted_at?: string;
+  // Add other fields if needed
+};
+
+// 2. Update CustomLineTooltip props
+interface CustomLineTooltipProps {
+  active?: boolean;
+  payload?: Array<{ payload: { Likes: number; Comments: number; Total: number } }>;
+  label?: string;
+}
+
+const CustomLineTooltip = ({ active, payload, label }: CustomLineTooltipProps) => {
   if (!active || !payload || !payload.length) return null;
   const data = payload[0]?.payload;
   return (
@@ -17,7 +34,8 @@ const CustomLineTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-export default function AnalysisChart({ metrics }: { metrics: any[] }) {
+// 3. Update AnalysisChart props
+export default function AnalysisChart({ metrics }: { metrics: Metric[] }) {
   const [mounted, setMounted] = useState(false);
   const [activeChart, setActiveChart] = useState<'bar' | 'line'>('bar');
   const [isMobile, setIsMobile] = useState(false);
@@ -44,9 +62,9 @@ export default function AnalysisChart({ metrics }: { metrics: any[] }) {
 
   const timeData = [...metrics]
     .filter(m => m.posted_at)
-    .sort((a, b) => new Date(a.posted_at).getTime() - new Date(b.posted_at).getTime())
+    .sort((a, b) => new Date(a.posted_at!).getTime() - new Date(b.posted_at!).getTime())
     .map(m => ({
-      date: new Date(m.posted_at).toLocaleDateString(),
+      date: new Date(m.posted_at!).toLocaleDateString(),
       Likes: m.likes || 0,
       Comments: m.comments || 0,
       Total: (m.likes || 0) + (m.comments || 0),

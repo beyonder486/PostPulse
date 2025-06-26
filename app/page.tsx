@@ -1,9 +1,6 @@
-import Image from "next/image";
 import Hero from "@/components/Hero";
 import DemoBox from "@/components/DemoBox";
-import Testimonials from "@/components/Testimonial";
 import FeatureTeaser from "@/components/Features";
-import EmailCapture from "@/components/EmailCapture";
 import AnimatedSection from "@/components/AnimatedSection";
 import HowItWorks from "@/components/HowItWorks";
 

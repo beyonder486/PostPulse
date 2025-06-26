@@ -114,25 +114,6 @@ export default function AnalysisMetrics({ metrics }: Props) {
 
   const steadyEngagement = getSteadyEngagement(dailyEngagements);
 
-  // Calculate steady engagement for previous period
-  const prevDailyEngagements = Array.from({ length: period }, (_, i) => {
-    const dayStart = new Date(prevPeriodEnd);
-    dayStart.setDate(prevPeriodEnd.getDate() - i);
-    dayStart.setHours(0, 0, 0, 0);
-    const dayEnd = new Date(dayStart);
-    dayEnd.setDate(dayEnd.getDate() + 1);
-
-    // Sum likes+comments for posts on this day
-    const daySum = prevMetrics
-      .filter(m => {
-        const d = new Date(m.posted_at);
-        return d >= dayStart && d < dayEnd;
-      })
-      .reduce((sum, m) => sum + (m.likes || 0) + (m.comments || 0), 0);
-
-    return daySum;
-  }).reverse();
-
   const prevPostEngagements = prevMetrics.map(m => (m.likes || 0) + (m.comments || 0));
   const prevSteadyEngagement = getSteadyEngagement(prevPostEngagements);
   const steadyEngagementChange = calcChange(steadyEngagement, prevSteadyEngagement);

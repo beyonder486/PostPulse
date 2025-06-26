@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDownIcon, ChevronUpIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+// Removed unused import: ArrowRightIcon
 import { AnimatePresence, motion } from 'framer-motion';
 
 interface Step {
@@ -14,13 +15,13 @@ const steps: Step[] = [
   {
     icon: '✍️',
     title: 'You Describe Your Niche',
-    description: 'Tell us your industry (e.g., "SaaS marketing", "Freelance design") and target audience.',
+    description: 'Tell us your industry (e.g., &quot;SaaS marketing&quot;, &quot;Freelance design&quot;) and target audience.',
     expandedContent: (
       <div className="mt-3 text-gray-300 text-sm">
         <p>Example inputs we optimize for:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>"I help e-commerce brands grow"</li>
-          <li>"Web developer specializing in Next.js"</li>
+          <li>&quot;I help e-commerce brands grow&quot;</li>
+          <li>&quot;Web developer specializing in Next.js&quot;</li>
         </ul>
       </div>
     )
@@ -64,7 +65,10 @@ export default function HowItWorksCards() {
     <main className='mt-20 md:mx-25 mx-10'>
       <h1 className='md:text-4xl text-2xl font-bold mb-5 bg-gradient-to-b from-[#ffffff] to-[#78f3fcc5] bg-clip-text text-transparent'>
         Tired of blank screens and content guilt?
-      </h1><h3 className='md:text-lg text-sm bg-gradient-to-b from-gray-200 ml-5 font-semibold to-gray-400 text-transparent bg-clip-text mx-auto mb-12'>That's where Postpulse steps in. We eliminate the guesswork, <br /> turning your ideas into engaging posts in a flash. Here's how simple it is:</h3>
+      </h1>
+      <h3 className='md:text-lg text-sm bg-gradient-to-b from-gray-200 ml-5 font-semibold to-gray-400 text-transparent bg-clip-text mx-auto mb-12'>
+        That&apos;s where Postpulse steps in. We eliminate the guesswork, <br /> turning your ideas into engaging posts in a flash. Here&apos;s how simple it is:
+      </h3>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((step, index) => (

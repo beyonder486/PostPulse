@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   }
 
   // Check current count
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('demo_limits')
     .select('count')
     .eq('device_id', deviceId)

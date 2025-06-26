@@ -48,7 +48,7 @@ export default function DemoBox() {
       const newCount = genCount + 1;
       setGenCount(newCount);
       localStorage.setItem('demoGenCount', String(newCount));
-    } catch (err) {
+    } catch {
       setOutput('Error connecting to AI service.');
     }
     setIsGenerating(false);

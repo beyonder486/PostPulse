@@ -39,7 +39,7 @@ const Hero = () => {
               relative
             "
           >
-            Get Started — It's Free!
+            Get Started &mdash; It&apos;s Free!
           </Link>
         </div>
       </div>

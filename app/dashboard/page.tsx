@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
@@ -147,7 +146,6 @@ export default function DashboardPage() {
   const [showConfirmClose, setShowConfirmClose] = useState(false);
   const [showExtensionModal, setShowExtensionModal] = useState(false);
   const [showAllPosts, setShowAllPosts] = useState(false);
-  const [genCount, setGenCount] = useState(0);
   const [dailyGenCount, setDailyGenCount] = useState(0);
   const [linkedinAccountName, setLinkedinAccountName] = useState('');
   type Metric = {
@@ -197,19 +195,6 @@ export default function DashboardPage() {
     };
     fetchMetrics();
   }, [user]);
-
-  // Fetch user's post count for limiting generations
-  useEffect(() => {
-    const fetchGenCount = async () => {
-      if (!user) return;
-      const { count } = await supabase
-        .from('posts')
-        .select('id', { count: 'exact', head: true })
-        .eq('user_id', user.id);
-      setGenCount(count || 0);
-    };
-    fetchGenCount();
-  }, [user, posts.length]);
 
   // Calculate daily generation count (posts in last 24 hours)
   useEffect(() => {
@@ -446,7 +431,7 @@ export default function DashboardPage() {
               {topMetrics.length === 0 ? (
                 <li>No posts yet.</li>
               ) : (
-                topMetrics.map((metric: any) => (
+                topMetrics.map((metric: Metric) => (
                   <li key={metric.id} className="p-4 rounded bg-gray-900/60 text-white flex items-center justify-between">
                     <div>
                       <div className="mb-2 break-all">
@@ -473,7 +458,7 @@ export default function DashboardPage() {
                       title="Delete metric"
                       onClick={async () => {
                         await supabase.from('post_metrics').delete().eq('id', metric.id);
-                        setMetrics(metrics => metrics.filter((m: any) => m.id !== metric.id));
+                        setMetrics(metrics => metrics.filter((m: Metric) => m.id !== metric.id));
                       }}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -513,7 +498,7 @@ export default function DashboardPage() {
               <DeleteButton
                 onDelete={async () => {
                   await supabase.from('posts').delete().eq('id', activePost.id);
-                  setPosts(posts => posts.filter(p => p.id !== activePost.id));
+                  setPosts(posts => posts.filter((p: Post) => p.id !== activePost.id));
                   setActivePost(null);
                 }}
               />

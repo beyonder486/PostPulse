@@ -22,7 +22,7 @@ export default function EmailCapture() {
         </button>
       </div>
       <p className="text-gray-500 text-xs mt-2">
-        We'll send login magic links (no passwords).
+        We&apos;ll send login magic links (no passwords).
       </p>
     </div>
   );

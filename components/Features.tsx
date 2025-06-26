@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { div } from "framer-motion/m"
+// Remove unused import
+// import { div } from "framer-motion/m"
+import Image from "next/image";
 
 // components/FeatureTeaser.tsx
 export default function FeatureTeaser() {
@@ -18,7 +20,14 @@ export default function FeatureTeaser() {
             Instantly visualize your individual post performance and engagement trends.
           </p>
           <div className="flex-1 flex items-center justify-center w-full">
-            <img className="h-60 w-80 object-cover rounded-2xl" src="Screenshot 2025-06-25 201824.png" alt="metrics" />
+            <Image
+              className="h-60 w-80 object-cover rounded-2xl"
+              src="/Screenshot 2025-06-25 201824.png"
+              alt="metrics"
+              width={320}
+              height={240}
+              style={{ objectFit: "cover", borderRadius: "1rem" }}
+            />
           </div>
         </div>
 
@@ -29,7 +38,14 @@ export default function FeatureTeaser() {
           </h1>
           <p className="text-blue-200 text-center mb-4 text-base">Know what works. Instantly.</p>
           <div className="flex-1 flex items-center justify-center w-full">
-            <img className="h-65 w-60 object-cover rounded-2xl" src="top.png" alt="top" />
+            <Image
+              className="h-65 w-60 object-cover rounded-2xl"
+              src="/top.png"
+              alt="top"
+              width={240}
+              height={260}
+              style={{ objectFit: "cover", borderRadius: "1rem" }}
+            />
           </div>
         </div>
 
